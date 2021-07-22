@@ -39,6 +39,8 @@ namespace FetchImages
 
                     String url = $"{baseURL}{imageFile}";
 
+                    //listBox1.Items.Add("");
+
                     WebClient client = new WebClient();
                     byte[] data = client.DownloadData(url);
                     using (FileStream fs = new FileStream("c:/tmp/"+imageFile, FileMode.Create))
