@@ -37,12 +37,18 @@ namespace DelegatesExample
         }
 
         static int result;
+        static MyDelegate myDelegate;
         static void Main(string[] args)
         {
-            /*
-            Operation oper1 = new Operation(Add);
+
+            //Operation oper1 = new Operation(Add);
+            Operation oper1 = delegate (double x1, double x2)
+            {
+                return x1 + x2;
+            };
             Console.WriteLine($"2+2 = {oper1(2, 2)}");
 
+            /*
             Operation oper2 = new Operation(Sub);
             Console.WriteLine($"2-4 = {oper2(2,4)}");
 
@@ -59,7 +65,7 @@ namespace DelegatesExample
             */
 
             DelegateSample ds = new DelegateSample();
-            MyDelegate myDelegate = new MyDelegate(ds.FirstMethod);
+            myDelegate = new MyDelegate(ds.FirstMethod);
             result = myDelegate("ABC", 1);
             Console.WriteLine(result);
 
@@ -71,7 +77,7 @@ namespace DelegatesExample
 
             // async invoking - callback method
             result = 0;
-            asyncResult = myDelegate.BeginInvoke("XYZ", 20, delegateCallback, result);
+            asyncResult = myDelegate.BeginInvoke("XYZ", 20, delegateCallback, null);
 
             Console.ReadKey();
 
@@ -79,6 +85,7 @@ namespace DelegatesExample
 
         static void delegateCallback(IAsyncResult ar)
         {
+            result = myDelegate.EndInvoke(ar);
             Console.WriteLine(result);
         }
     }
