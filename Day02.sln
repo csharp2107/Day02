@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsExample", "EventsExam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskExample", "TaskExample\TaskExample.csproj", "{83B5AB1A-763E-4E0D-BD72-A1799CB38DF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FetchImages", "FetchImages\FetchImages.csproj", "{191DC0BA-8D2B-409E-AF80-BEB2FA898949}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{83B5AB1A-763E-4E0D-BD72-A1799CB38DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83B5AB1A-763E-4E0D-BD72-A1799CB38DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83B5AB1A-763E-4E0D-BD72-A1799CB38DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{191DC0BA-8D2B-409E-AF80-BEB2FA898949}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{191DC0BA-8D2B-409E-AF80-BEB2FA898949}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{191DC0BA-8D2B-409E-AF80-BEB2FA898949}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{191DC0BA-8D2B-409E-AF80-BEB2FA898949}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
