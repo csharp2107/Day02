@@ -27,9 +27,11 @@ namespace DelegatesTypes
                 new Car("Audi","A5", 15_000),
                 new Car("Audi","A80", 9_000),
                 new Car("BMW","320", 7_000),
+                new Car("OPEL","Astra", 3_000),
                 new Car("BMW","520", 5_000),
             };
 
+            car.MaxPrice = 5000;
             Predicate<Car> myPredicateDelegate = car.ReturnCheapPrice;
             Car tempCar = Array.Find(carList, myPredicateDelegate);
             Console.WriteLine($"Car: {tempCar.Brand} {tempCar.Model} , price = {tempCar.Price}");
@@ -45,6 +47,25 @@ namespace DelegatesTypes
             foreach (var item in tempCars)
             {
                 Console.WriteLine($"Car: {item.Brand} {item.Model} , price = {item.Price}");
+            }
+
+            // Converter delegate - convert data between datatypes
+            UsedCar uc = new UsedCar();
+            Converter<Car, UsedCar> myConverterDelegate =
+                new Converter<Car, UsedCar>(uc.ReturnUsedCar);
+            UsedCar[] ucArray = Array.ConvertAll(carList, myConverterDelegate);
+            foreach (var item in ucArray)
+            {
+                Console.WriteLine($"Car: {item.Brand} {item.Model} , price = {item.Price}, oldCard = {item.IsOldCar} ");
+            }
+
+            // Comparison delegate - ordering/sorting elements inside collection
+            Comparison<Car> myComparisonDelegate = new Comparison<Car>(car.CompareNames);
+            Array.Sort(carList, myComparisonDelegate);
+            Console.WriteLine("Sorted car list:");
+            foreach (var item in carList)
+            {
+                Console.WriteLine($"Car: {item.Brand} {item.Model} , price = {item.Price} ");
             }
 
             Console.ReadKey();
@@ -95,9 +116,31 @@ namespace DelegatesTypes
 
         public Car() { }
 
+        public double MaxPrice { get; set; }
         public bool ReturnCheapPrice(Car car)
         {
-            return car.Price < 10_000;
+            return car.Price < MaxPrice; // 10_000;
+        }
+
+        public int CompareNames(Car car1, Car car2)
+        {
+            String s1 = $"{car1.Brand} {car1.Model}";
+            String s2 = $"{car2.Brand} {car2.Model}";
+            return s1.CompareTo(s2);
+        }
+    }
+
+    class UsedCar : Car
+    {
+        public bool IsOldCar { get; set; }
+
+        public UsedCar ReturnUsedCar(Car car)
+        {
+            return new UsedCar()
+            {
+                Model = car.Model, Brand = car.Brand, Price = car.Price*4.57,
+                IsOldCar = true
+            };
         }
     }
 }
